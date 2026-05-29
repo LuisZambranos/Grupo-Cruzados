@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grupo Cruzados - Deco Hogar</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Outfit', 'Inter', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                DEFAULT: '#B5C2C1',
+                light: '#d2dcdb',
+                dark: '#9caaa5',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-white font-sans text-gray-800">
+    
+    <!-- Navbar Fija -->
+    <nav class="sticky top-0 z-30 bg-brand text-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <button class="p-2 -ml-2 text-white hover:bg-white/10 rounded-2xl transition-colors cursor-pointer">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+          <span 
+            onclick="handleBackToHome()"
+            class="font-bold text-xl sm:text-2xl tracking-tight cursor-pointer select-none"
+          >
+            Grupo Cruzados
+          </span>
+        </div>
+
+        <button 
+          onclick="openCart()"
+          class="relative p-3 text-white hover:bg-white/10 rounded-2xl transition-colors group cursor-pointer"
+        >
+          <i data-lucide="shopping-cart" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+          <span 
+            id="cart-badge"
+            class="absolute top-1 right-1 bg-white text-brand text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-brand hidden"
+          >
+            0
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Contenido Principal Dinámico -->
+    <main id="main-content" class="flex-grow">
+      <!-- Se llena dinámicamente con JS -->
+    </main>
+
+    <!-- Modal/Drawer de Carrito -->
+    <!-- Fondo opaco/desenfocado -->
+    <div 
+      id="cart-overlay"
+      onclick="closeCart()"
+      class="fixed inset-0 bg-[#333333]/40 backdrop-blur-sm z-40 transition-opacity duration-300 hidden"
+    ></div>
+    
+    <!-- Contenedor del Drawer -->
+    <div 
+      id="cart-drawer"
+      class="fixed inset-y-0 right-0 w-full sm:w-[450px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col rounded-l-[2rem]"
+    >
+      <!-- Cabecera del carrito -->
+      <div class="bg-brand flex items-center justify-between p-6 sm:p-8 rounded-tl-[2rem]">
+        <h2 class="text-2xl font-medium text-white flex items-center gap-2">
+          <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+          Tu Carrito
+        </h2>
+        <button 
+          onclick="closeCart()"
+          class="p-2 text-white hover:bg-white/20 rounded-2xl transition-colors cursor-pointer"
+        >
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Items -->
+      <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 sm:p-8 bg-gray-50/30">
+        <!-- Se llena dinámicamente -->
+      </div>
+
+      <!-- Checkout / Total -->
+      <div id="cart-total-container">
+        <!-- Se llena dinámicamente -->
+      </div>
+    </div>
+
+    <!-- Footer elegante -->
+    <footer class="bg-brand text-white pt-20 pb-10 px-4 sm:px-8 rounded-t-[3rem] mt-auto">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+        <div class="col-span-1 md:col-span-2">
+          <h3 class="text-3xl font-bold tracking-tight mb-6">Grupo Cruzados</h3>
+          <p class="text-white/80 max-w-sm font-light leading-relaxed">
+            Redefiniendo el concepto de lujo para tu hogar. Muebles de diseño exclusivo elaborados con los más altos estándares de calidad.
+          </p>
+          <div class="flex gap-4 mt-8">
+            <button class="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors cursor-pointer"><i data-lucide="instagram" class="w-5 h-5"></i></button>
+            <button class="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors cursor-pointer"><i data-lucide="facebook" class="w-5 h-5"></i></button>
+            <button class="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors cursor-pointer"><i data-lucide="twitter" class="w-5 h-5"></i></button>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-medium text-lg mb-6">Enlaces Rápidos</h4>
+          <ul class="space-y-3 font-light text-white/80">
+            <li><a href="#" class="hover:text-white transition-colors">Colecciones</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Sustentabilidad</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium text-lg mb-6">Atención al Cliente</h4>
+          <ul class="space-y-3 font-light text-white/80">
+            <li><a href="#" class="hover:text-white transition-colors">Envíos y Entregas</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Devoluciones</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Garantía</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto border-t border-white/20 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm font-light text-white/70">
+        <p>© 2026 Grupo Cruzados Deco Hogar. Todos los derechos reservados.</p>
+        <div class="flex gap-4 mt-4 sm:mt-0">
+          <a href="#" class="hover:text-white">Términos de Servicio</a>
+          <a href="#" class="hover:text-white">Privacidad</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lógica de control -->
+    <script src="./app.js"></script>
+  </body>
+</html>

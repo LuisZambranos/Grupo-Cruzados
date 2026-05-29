@@ -1,0 +1,35 @@
+/* Estilos globales y animaciones en Vanilla CSS para el Mockup */
+
+@keyframes softPulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 4px 15px -3px rgba(181, 194, 193, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 10px 25px 2px rgba(181, 194, 193, 0.8);
+    transform: scale(1.02);
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Opcional: Estilo global para el color de selección */
+::selection {
+  background-color: #B5C2C1;
+  color: white;
+}
+
+/* Animaciones suaves para transición de vistas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
